@@ -1,25 +1,34 @@
+# vim: set ts=2 sts=2 sw=2 expandtab smarttab:
+#
+# This file is part of Dist-Zilla-Stash-PodWeaver
+#
+# This software is copyright (c) 2010 by Randy Stauner.
+#
+# This is free software; you can redistribute it and/or modify it under
+# the same terms as the Perl 5 programming language system itself.
+#
+use strict;
+use warnings;
+
 package Dist::Zilla::Stash::PodWeaver;
 BEGIN {
-  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.001000';
+  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.002';
 }
 BEGIN {
   $Dist::Zilla::Stash::PodWeaver::AUTHORITY = 'cpan:RWSTAUNER';
 }
 # ABSTRACT: A stash of config options for Pod::Weaver
 
-
-use strict;
-use warnings;
 use Pod::Weaver::Config::Assembler ();
 use Moose;
 with 'Dist::Zilla::Role::Stash::Plugins';
 
 
 sub expand_package {
-	my ($class, $pack) = @_;
-	# Cannot start an ini line with '='
-	$pack =~ s/^\+/=/;
-	Pod::Weaver::Config::Assembler->expand_package($pack);
+  my ( $self, $pack ) = @_;
+  # Cannot start an ini line with '='
+  $pack =~ s/^\+/=/;
+  Pod::Weaver::Config::Assembler->expand_package($pack);
 }
 
 1;
@@ -29,7 +38,8 @@ __END__
 =pod
 
 =for :stopwords Randy Stauner PluginBundles PluginName dists zilla dist-zilla Flibberoloo
-ini CPAN AnnoCPAN RT CPANTS Kwalitee diff
+ini cpan testmatrix url annocpan anno bugtracker rt cpants kwalitee diff
+irc mailto metadata placeholders
 
 =head1 NAME
 
@@ -37,16 +47,16 @@ Dist::Zilla::Stash::PodWeaver - A stash of config options for Pod::Weaver
 
 =head1 VERSION
 
-version 1.001000
+version 1.002
 
 =head1 SYNOPSIS
 
-	# dist.ini
+  # dist.ini
 
-	[@YourFavoritePluginBundle]
+  [@YourFavoritePluginBundle]
 
-	[%PodWeaver]
-	-StopWords:include = WordsIUse ThatAreNotWords
+  [%PodWeaver]
+  -StopWords:include = WordsIUse ThatAreNotWords
 
 =head1 DESCRIPTION
 
@@ -69,17 +79,6 @@ that can be accessed by L<Pod::Weaver> plugins.
 Because you know how you like your dists built,
 (and you're using PluginBundles to do it)
 but you need a little extra customization.
-
-=head1 METHODS
-
-=head2 expand_package
-
-Expand shortened package monikers to the full package name.
-
-Changes leading I<+> to I<=> and then passes the value to
-I<expand_package> in L<Pod::Weaver::Config::Assembler>.
-
-See L</USAGE> for a description.
 
 =head1 USAGE
 
@@ -115,19 +114,30 @@ so this module will convert any lines that start with I< + > to I< = >.
 
 For example
 
-	Complaints:use_fake_email = 1
+  Complaints:use_fake_email = 1
 
 Would set the 'use_fake_email' attribute to '1'
 for the [fictional] I<Pod::Weaver::Section::Complaints> plugin.
 
-	-StopWords:include = Flibberoloo
+  -StopWords:include = Flibberoloo
 
 Would add 'Flibberoloo' to the list of stopwords
 added by the L<Pod::Weaver::Plugin::StopWords> plugin.
 
-	+Some::Other::Module:silly = 1
+  +Some::Other::Module:silly = 1
 
 Would set the 'silly' flag to true on I<Some::Other::Module>.
+
+=head1 METHODS
+
+=head2 expand_package
+
+Expand shortened package monikers to the full package name.
+
+Changes leading I<+> to I<=> and then passes the value to
+I<expand_package> in L<Pod::Weaver::Config::Assembler>.
+
+See L</USAGE> for a description.
 
 =head1 BUGS AND LIMITATIONS
 
@@ -165,11 +175,16 @@ like you think it should.
 
 =head1 SUPPORT
 
+=head2 Perldoc
+
 You can find documentation for this module with the perldoc command.
 
   perldoc Dist::Zilla::Stash::PodWeaver
 
 =head2 Websites
+
+The following websites have more information about this module, and may be of help to you. As always,
+in addition to those websites please use your favorite search engine to discover more resources.
 
 =over 4
 
@@ -177,64 +192,64 @@ You can find documentation for this module with the perldoc command.
 
 Search CPAN
 
+The default CPAN search engine, useful to view POD in HTML format.
+
 L<http://search.cpan.org/dist/Dist-Zilla-Stash-PodWeaver>
 
 =item *
 
 RT: CPAN's Bug Tracker
 
+The RT ( Request Tracker ) website is the default bug/issue tracking system for CPAN.
+
 L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Dist-Zilla-Stash-PodWeaver>
-
-=item *
-
-AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Dist-Zilla-Stash-PodWeaver>
 
 =item *
 
 CPAN Ratings
 
+The CPAN Ratings is a website that allows community ratings and reviews of Perl modules.
+
 L<http://cpanratings.perl.org/d/Dist-Zilla-Stash-PodWeaver>
 
 =item *
 
-CPAN Forum
+CPAN Testers
 
-L<http://cpanforum.com/dist/Dist-Zilla-Stash-PodWeaver>
+The CPAN Testers is a network of smokers who run automated tests on uploaded CPAN distributions.
 
-=item *
-
-CPANTS Kwalitee
-
-L<http://cpants.perl.org/dist/overview/Dist-Zilla-Stash-PodWeaver>
-
-=item *
-
-CPAN Testers Results
-
-L<http://cpantesters.org/distro/D/Dist-Zilla-Stash-PodWeaver.html>
+L<http://www.cpantesters.org/distro/D/Dist-Zilla-Stash-PodWeaver>
 
 =item *
 
 CPAN Testers Matrix
 
+The CPAN Testers Matrix is a website that provides a visual overview of the test results for a distribution on various Perls/platforms.
+
 L<http://matrix.cpantesters.org/?dist=Dist-Zilla-Stash-PodWeaver>
+
+=item *
+
+CPAN Testers Dependencies
+
+The CPAN Testers Dependencies is a website that shows a chart of the test results of all dependencies for a distribution.
+
+L<http://deps.cpantesters.org/?module=Dist::Zilla::Stash::PodWeaver>
 
 =back
 
-=head2 Bugs
+=head2 Bugs / Feature Requests
 
-Please report any bugs or feature requests to C<bug-dist-zilla-stash-podweaver at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Dist-Zilla-Stash-PodWeaver>.  I will be
-notified, and then you'll automatically be notified of progress on your bug as I make changes.
+Please report any bugs or feature requests by email to C<bug-dist-zilla-stash-podweaver at rt.cpan.org>, or through
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Dist-Zilla-Stash-PodWeaver>. You will be automatically notified of any
+progress on the request by the system.
 
 =head2 Source Code
 
 
-L<http://github.com/magnificent-tears/Dist-Zilla-Stash-PodWeaver/tree>
+L<http://github.com/rwstauner/Dist-Zilla-Stash-PodWeaver>
 
-  git clone git://github.com/magnificent-tears/Dist-Zilla-Stash-PodWeaver.git
+  git clone http://github.com/rwstauner/Dist-Zilla-Stash-PodWeaver
 
 =head1 AUTHOR
 
