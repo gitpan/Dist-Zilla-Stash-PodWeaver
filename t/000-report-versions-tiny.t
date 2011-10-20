@@ -50,13 +50,15 @@ sub pmver {
 
 eval { $v .= pmver('Dist::Zilla::Role::Stash::Plugins','any version') };
 eval { $v .= pmver('Dist::Zilla::Tester','any version') };
+eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
 eval { $v .= pmver('File::Find','any version') };
 eval { $v .= pmver('File::Temp','any version') };
-eval { $v .= pmver('Module::Build','0.3601') };
 eval { $v .= pmver('Moose','any version') };
 eval { $v .= pmver('Pod::Weaver::Config::Assembler','any version') };
 eval { $v .= pmver('Test::MockObject','any version') };
 eval { $v .= pmver('Test::More','0.88') };
+eval { $v .= pmver('strict','any version') };
+eval { $v .= pmver('warnings','any version') };
 
 
 

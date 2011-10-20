@@ -9,31 +9,32 @@ use ExtUtils::MakeMaker 6.30;
 
 
 my %WriteMakefileArgs = (
-  'ABSTRACT' => 'A stash of config options for Pod::Weaver',
-  'AUTHOR' => 'Randy Stauner <rwstauner@cpan.org>',
-  'BUILD_REQUIRES' => {
-    'Dist::Zilla::Tester' => '0',
-    'File::Find' => '0',
-    'File::Temp' => '0',
-    'ExtUtils::MakeMaker' => '6.30',
-    'Test::MockObject' => '0',
-    'Test::More' => '0.88'
+  "ABSTRACT" => "A stash of config options for Pod::Weaver",
+  "AUTHOR" => "Randy Stauner <rwstauner\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Dist::Zilla::Tester" => 0,
+    "File::Find" => 0,
+    "File::Temp" => 0,
+    "Test::MockObject" => 0,
+    "Test::More" => "0.88"
   },
-  'CONFIGURE_REQUIRES' => {
-    'ExtUtils::MakeMaker' => '6.30'
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
   },
-  'DISTNAME' => 'Dist-Zilla-Stash-PodWeaver',
-  'EXE_FILES' => [],
-  'LICENSE' => 'perl',
-  'NAME' => 'Dist::Zilla::Stash::PodWeaver',
-  'PREREQ_PM' => {
-    'Dist::Zilla::Role::Stash::Plugins' => '0',
-    'Moose' => '0',
-    'Pod::Weaver::Config::Assembler' => '0'
+  "DISTNAME" => "Dist-Zilla-Stash-PodWeaver",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "Dist::Zilla::Stash::PodWeaver",
+  "PREREQ_PM" => {
+    "Dist::Zilla::Role::Stash::Plugins" => 0,
+    "Moose" => 0,
+    "Pod::Weaver::Config::Assembler" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'VERSION' => '1.002',
-  'test' => {
-    'TESTS' => 't/*.t'
+  "VERSION" => "1.003",
+  "test" => {
+    "TESTS" => "t/*.t"
   }
 );
 
