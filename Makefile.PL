@@ -26,13 +26,13 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Stash::PodWeaver",
   "PREREQ_PM" => {
-    "Dist::Zilla::Role::Stash::Plugins" => 0,
+    "Dist::Zilla::Role::Stash::Plugins" => "1.005",
     "Moose" => 0,
     "Pod::Weaver::Config::Assembler" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "1.003",
+  "VERSION" => "1.004",
   "test" => {
     "TESTS" => "t/*.t"
   }

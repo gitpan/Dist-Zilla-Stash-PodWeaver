@@ -12,7 +12,7 @@ use warnings;
 
 package Dist::Zilla::Stash::PodWeaver;
 {
-  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.003';
+  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.004';
 }
 BEGIN {
   $Dist::Zilla::Stash::PodWeaver::AUTHORITY = 'cpan:RWSTAUNER';
@@ -21,7 +21,9 @@ BEGIN {
 
 use Pod::Weaver::Config::Assembler ();
 use Moose;
-with 'Dist::Zilla::Role::Stash::Plugins';
+
+# 1.005 has bugfix to enable array subscript config lines
+with 'Dist::Zilla::Role::Stash::Plugins' => { -version => 1.005 };
 
 
 sub expand_package {
@@ -37,11 +39,11 @@ sub expand_package {
 __END__
 =pod
 
+=encoding utf-8
+
 =for :stopwords Randy Stauner ACKNOWLEDGEMENTS PluginBundles PluginName dists zilla
 dist-zilla Flibberoloo ini cpan testmatrix url annocpan anno bugtracker rt
-cpants kwalitee diff irc mailto metadata placeholders
-
-=encoding utf-8
+cpants kwalitee diff irc mailto metadata placeholders metacpan
 
 =head1 NAME
 
@@ -49,7 +51,7 @@ Dist::Zilla::Stash::PodWeaver - A stash of config options for Pod::Weaver
 
 =head1 VERSION
 
-version 1.003
+version 1.004
 
 =head1 SYNOPSIS
 

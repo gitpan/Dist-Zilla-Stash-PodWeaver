@@ -11,27 +11,29 @@ my %confs = (
   't/ini-sep'  => {
     mods => {
       'Pod::Weaver::Plugin::PlugName' => { 'Attr::Name' => 'oops' },
-      'Mod::Name' => { '!goo-ber' => 'nuts', pea => 'nut' }
+      'Mod::Name' => { '!goo-ber' => 'nuts', pea => [qw( nut pod )] }
     },
-    'argument_separator'  => '^([^|]+)\|([^|]+)$',
+    'argument_separator'  => '([^|]+)\|([^|]+?)',
     _config => {
       '-PlugName|Attr::Name' => 'oops',
       '+Mod::Name|!goo-ber'  => 'nuts',
-      '+Mod::Name|pea'       => 'nut',
+      '+Mod::Name|pea[0]'    => 'nut',
+      '+Mod::Name|pea[1]'    => 'pod',
     }
   },
   't/ini-test' => {
     mods => {
       'Pod::Weaver::PluginBundle::ABundle' => {'fakeattr' => 'fakevalue1'},
       'Pod::Weaver::Plugin::APlugin' => {'fakeattr' => 'fakevalue2'},
-      'Pod::Weaver::Section::ASection' => {'heading' => 'head5'},
+      'Pod::Weaver::Section::ASection' => {'heading' => [qw( head5 head6 )]},
       'Pod::Weaver::Plugin::APlug::Name' => {'config' => 'confy'},
     },
-    'argument_separator'  => '^(.+?)\W+(\w+)$',
+    'argument_separator'  => '(.+?)\W+(\w+)',
     _config => {
       '@ABundle-fakeattr'    => 'fakevalue1',
       '-APlugin/fakeattr'    => 'fakevalue2',
-      'ASection->heading'    => 'head5',
+      'ASection->heading[a]' => 'head5',
+      'ASection->heading[b]' => 'head6',
       '-APlug::Name::config' => 'confy',
     }
   }
@@ -59,8 +61,8 @@ foreach my $dir ( keys %confs ){
     $mock->fake_module($mod, new => sub { bless $_[1], $_[0] }, plugin_name => sub { $_[0]->{name} });
     my $plug = $mod->new({name => ($mod =~ /([^:]+)$/)[0]});
     isa_ok($plug, $mod);
-    my $stash = $zilla->stash_named('%PodWeaver')->get_stashed_config($plug, {zilla => $zilla});
-    is_deeply($stash, $mods->{$mod}, 'stashed config expected');
+    my $stash = $zilla->stash_named('%PodWeaver')->get_stashed_config($plug);
+    is_deeply($stash, $mods->{$mod}, "stashed config expected ($dir / $mod)");
   }
 }
 

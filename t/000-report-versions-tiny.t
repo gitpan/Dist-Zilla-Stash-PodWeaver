@@ -48,7 +48,7 @@ sub pmver {
     return sprintf('%-45s => %-10s%-15s%s', $module, $pmver, $wanted, "\n");
 }
 
-eval { $v .= pmver('Dist::Zilla::Role::Stash::Plugins','any version') };
+eval { $v .= pmver('Dist::Zilla::Role::Stash::Plugins','1.005') };
 eval { $v .= pmver('Dist::Zilla::Tester','any version') };
 eval { $v .= pmver('ExtUtils::MakeMaker','6.30') };
 eval { $v .= pmver('File::Find','any version') };
