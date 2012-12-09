@@ -13,10 +13,13 @@ my %WriteMakefileArgs = (
   "AUTHOR" => "Randy Stauner <rwstauner\@cpan.org>",
   "BUILD_REQUIRES" => {
     "Dist::Zilla::Tester" => 0,
+    "ExtUtils::MakeMaker" => 0,
     "File::Find" => 0,
+    "File::Spec::Functions" => 0,
     "File::Temp" => 0,
+    "List::Util" => 0,
     "Test::MockObject" => 0,
-    "Test::More" => "0.88"
+    "Test::More" => 0
   },
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30"
@@ -26,13 +29,13 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Dist::Zilla::Stash::PodWeaver",
   "PREREQ_PM" => {
-    "Dist::Zilla::Role::Stash::Plugins" => "1.005",
+    "Dist::Zilla::Role::Stash::Plugins" => "1.006",
     "Moose" => 0,
     "Pod::Weaver::Config::Assembler" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "1.004",
+  "VERSION" => "1.005",
   "test" => {
     "TESTS" => "t/*.t"
   }

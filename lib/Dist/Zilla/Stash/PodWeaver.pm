@@ -12,8 +12,10 @@ use warnings;
 
 package Dist::Zilla::Stash::PodWeaver;
 {
-  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.004';
+  $Dist::Zilla::Stash::PodWeaver::VERSION = '1.005';
 }
+# git description: v1.004-1-gfd36825
+
 BEGIN {
   $Dist::Zilla::Stash::PodWeaver::AUTHORITY = 'cpan:RWSTAUNER';
 }
@@ -22,8 +24,8 @@ BEGIN {
 use Pod::Weaver::Config::Assembler ();
 use Moose;
 
-# 1.005 has bugfix to enable array subscript config lines
-with 'Dist::Zilla::Role::Stash::Plugins' => { -version => 1.005 };
+# bug fix for attribute order
+with 'Dist::Zilla::Role::Stash::Plugins' => { -version => 1.006 };
 
 
 sub expand_package {
@@ -35,8 +37,8 @@ sub expand_package {
 
 1;
 
-
 __END__
+
 =pod
 
 =encoding utf-8
@@ -51,7 +53,7 @@ Dist::Zilla::Stash::PodWeaver - A stash of config options for Pod::Weaver
 
 =head1 VERSION
 
-version 1.004
+version 1.005
 
 =head1 SYNOPSIS
 
@@ -275,4 +277,3 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
